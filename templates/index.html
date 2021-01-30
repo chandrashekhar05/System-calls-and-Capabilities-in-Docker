@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capabilities & System Calls In Docker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+    <script>
+  function resizeIframe(obj) {
+    obj.style.height = (obj.contentWindow.document.documentElement.scrollHeight+20) + 'px';}
+</script>
+</head>
+<body>
+<form action="/submit" method="POSt" >
+  <details>
+    <summary class="heading" id=fheading style="margin-top: 2px;">Add Capabilities</summary>
+    <div class="flex-container">
+      <div><label><input type="checkbox" name="addc" value="AUDIT_CONTROL">AUDIT_CONTROL</label></div>
+      <div><label><input type="checkbox" name="addc" value="AUDIT_READ">AUDIT_READ</label></div>
+      <div><label><input type="checkbox" name="addc" value="BLOCK_SUSPEND">BLOCK_SUSPEND</label></div>
+      <div><label><input type="checkbox" name="addc" value="DAC_READ_SEARCH">DAC_READ_SEARCH</label></div>
+      <div><label><input type="checkbox" name="addc" value="IPC_LOCK">IPC_LOCK</label></div>
+      <div><label><input type="checkbox" name="addc" value="IPC_OWNER">IPC_OWNER</label></div>
+      <div><label><input type="checkbox" name="addc" value="LEASE">LEASE</label></div>
+      <div><label><input type="checkbox" name="addc" value="LINUX_IMMUTABLE">LINUX_IMMUTABLE</label></div>
+      <div><label><input type="checkbox" name="addc" value="MAC_ADMIN">MAC_ADMIN</label></div>
+      <div><label><input type="checkbox" name="addc" value="MAC_OVERRIDE">MAC_OVERRIDE</label></div>
+      <div><label><input type="checkbox" name="addc" value="NET_ADMIN">NET_ADMIN</label></div>
+      <div><label><input type="checkbox" name="addc" value="NET_BROADCAST">NET_BROADCAST</label></div>
+      <div><label><input type="checkbox" name="addc" value="SYS_ADMIN">SYS_ADMIN</label></div>
+      <div><label><input type="checkbox" name="addc" value="SYS_BOOT">SYS_BOOT</label></div>
+      <div><label><input type="checkbox" name="addc" value="SYS_MODULE">SYS_MODULE</label></div>
+      <div><label><input type="checkbox" name="addc" value="SYS_NICE">SYS_NICE</label></div>
+      <div><label><input type="checkbox" name="addc" value="SYS_PACCT">SYS_PACCT</label></div>
+      <div><label><input type="checkbox" name="addc" value="SYS_PTRACE">SYS_PTRACE</label></div>
+      <div><label><input type="checkbox" name="addc" value="SYS_RAWIO">SYS_RAWIO</label></div>
+      <div><label><input type="checkbox" name="addc" value="SYS_RESOURCE">SYS_RESOURCE</label></div>
+      <div><label><input type="checkbox" name="addc" value="SYS_TIME">SYS_TIME</label></div>
+      <div><label><input type="checkbox" name="addc" value="SYS_TTY_CONFIG">SYS_TTY_CONFIG</label></div>
+      <div><label><input type="checkbox" name="addc" value="SYSLOG">SYSLOG</label></div>
+      <div><label><input type="checkbox" name="addc" value="WAKE_ALARM">WAKE_ALARM</label></div>
+    </div>
+  </details>
+  <details>
+    <summary  class="heading">Drop Capabilities</summary>
+    <div class="flex-container">
+      <div><label><input type="checkbox" name="dropc" value="AUDIT_WRITE">AUDIT_WRITE</label></div>
+      <div><label><input type="checkbox" name="dropc" value="CHOWN">CHOWN</label></div>
+      <div><label><input type="checkbox" name="dropc" value="DAC_OVERRIDE">DAC_OVERRIDE</label></div>
+      <div><label><input type="checkbox" name="dropc" value="FOWNER">FOWNER</label></div>
+      <div><label><input type="checkbox" name="dropc" value="FSETID">FSETID</label></div>
+      <div><label><input type="checkbox" name="dropc" value="KILL">KILL</label></div>
+      <div><label><input type="checkbox" name="dropc" value="MKNOD">MKNOD</label></div>
+      <div><label><input type="checkbox" name="dropc" value="NET_BIND_SERVICE">NET_BIND_SERVICE</label></div>
+      <div><label><input type="checkbox" name="dropc" value="NET_RAW">NET_RAW</label></div>
+      <div><label><input type="checkbox" name="dropc" value="SETFCAP">SETFCAP</label></div>
+      <div><label><input type="checkbox" name="dropc" value="SETGID">SETGID</label></div>
+      <div><label><input type="checkbox" name="dropc" value="SETPCAP">SETPCAP</label></div>
+      <div><label><input type="checkbox" name="dropc" value="SETUID">SETUID</label></div>
+      <div><label><input type="checkbox" name="dropc" value="SYS_CHROOT">SYS_CHROOT</label></div>
+    </div>
+  </details>
+  <!-- <details>
+    <summary  class="heading"><input type="checkbox" name="addsys">    Add System Calls</summary>
+    <div class="flex-container">
+      <div><label><input type="checkbox" name="adds" value="acct">acct</label></div>
+      <div><label><input type="checkbox" name="adds" value="add_key">add_key</label></div>
+      <div><label><input type="checkbox" name="adds" value="bpf">bpf</label></div>
+      <div><label><input type="checkbox" name="adds" value="clock_adjtime">clock_adjtime</label></div>
+      <div><label><input type="checkbox" name="adds" value="clock_settime">clock_settime</label></div>
+      <div><label><input type="checkbox" name="adds" value="clone">clone</label></div>
+      <div><label><input type="checkbox" name="adds" value="create_module">create_module</label></div>
+      <div><label><input type="checkbox" name="adds" value="delete_module">delete_module</label></div>
+      <div><label><input type="checkbox" name="adds" value="finit_module">finit_module</label></div>
+      <div><label><input type="checkbox" name="adds" value="get_kernel_syms">get_kernel_syms</label></div>
+      <div><label><input type="checkbox" name="adds" value="get_mempolicy">get_mempolicy</label></div>
+      <div><label><input type="checkbox" name="adds" value="init_module">init_module</label></div>
+      <div><label><input type="checkbox" name="adds" value="ioperm">ioperm</label></div>
+      <div><label><input type="checkbox" name="adds" value="iopl">iopl</label></div>
+      <div><label><input type="checkbox" name="adds" value="kcmp">kcmp</label></div>
+      <div><label><input type="checkbox" name="adds" value="kexec_file_load">kexec_file_load</label></div>
+      <div><label><input type="checkbox" name="adds" value="kexec_load">kexec_load</label></div>
+      <div><label><input type="checkbox" name="adds" value="keyctl">keyctl</label></div>
+      <div><label><input type="checkbox" name="adds" value="lookup_dcookie">lookup_dcookie</label></div>
+      <div><label><input type="checkbox" name="adds" value="mbind">mbind</label></div>
+      <div><label><input type="checkbox" name="adds" value="mount">mount</label></div>
+      <div><label><input type="checkbox" name="adds" value="move_pages">move_pages</label></div>
+      <div><label><input type="checkbox" name="adds" value="name="adds" value_to_handle_at">value_to_handle_at</label></div>
+      <div><label><input type="checkbox" name="adds" value="nfsservctl">nfsservctl</label></div>
+      <div><label><input type="checkbox" name="adds" value="open_by_handle_at">open_by_handle_at</label></div>
+      <div><label><input type="checkbox" name="adds" value="perf_event_open">perf_event_open</label></div>
+      <div><label><input type="checkbox" name="adds" value="personality">personality</label></div>
+      <div><label><input type="checkbox" name="adds" value="pivot_root">pivot_root</label></div>
+      <div><label><input type="checkbox" name="adds" value="process_vm_readv">process_vm_readv</label></div>
+      <div><label><input type="checkbox" name="adds" value="process_vm_writev">process_vm_writev</label></div>
+      <div><label><input type="checkbox" name="adds" value="ptrace">ptrace</label></div>
+      <div><label><input type="checkbox" name="adds" value="query_module">query_module</label></div>
+      <div><label><input type="checkbox" name="adds" value="quotactl">quotactl</label></div>
+      <div><label><input type="checkbox" name="adds" value="reboot">reboot</label></div>
+      <div><label><input type="checkbox" name="adds" value="request_key">request_key</label></div>
+      <div><label><input type="checkbox" name="adds" value="set_mempolicy">set_mempolicy</label></div>
+      <div><label><input type="checkbox" name="adds" value="setns">setns</label></div>
+      <div><label><input type="checkbox" name="adds" value="settimeofday">settimeofday</label></div>
+      <div><label><input type="checkbox" name="adds" value="stime">stime</label></div>
+      <div><label><input type="checkbox" name="adds" value="swapon">swapon</label></div>
+      <div><label><input type="checkbox" name="adds" value="swapoff">swapoff</label></div>
+      <div><label><input type="checkbox" name="adds" value="sysfs">sysfs</label></div>
+      <div><label><input type="checkbox" name="adds" value="_sysctl">_sysctl</label></div>
+      <div><label><input type="checkbox" name="adds" value="umount">umount</label></div>
+      <div><label><input type="checkbox" name="adds" value="umount2">umount2</label></div>
+      <div><label><input type="checkbox" name="adds" value="unshare">unshare</label></div>
+      <div><label><input type="checkbox" name="adds" value="uselib">uselib</label></div>
+      <div><label><input type="checkbox" name="adds" value="userfaultfd">userfaultfd</label></div>
+      <div><label><input type="checkbox" name="adds" value="ustat">ustat</label></div>
+      <div><label><input type="checkbox" name="adds" value="vm86">vm86</label></div>
+      <div><label><input type="checkbox" name="adds" value="vm86old">vm86old</label></div>
+    </div>
+  </details> -->
+  <details>
+    <summary  class="heading" id="lheading">Drop System Calls</summary>
+    <div class="flex-container" id="lcontent">
+    	<div><label><input type='checkbox' name='drops' value='adjtimex'>adjtimex</label></div>
+		<div><label><input type='checkbox' name='drops' value='alarm'>alarm</label></div>
+		<div><label><input type='checkbox' name='drops' value='chdir'>chdir</label></div>
+		<div><label><input type='checkbox' name='drops' value='chmod'>chmod</label></div>
+		<div><label><input type='checkbox' name='drops' value='chown'>chown</label></div>
+		<div><label><input type='checkbox' name='drops' value='chown32'>chown32</label></div>
+		<div><label><input type='checkbox' name='drops' value='close'>close</label></div>
+		<div><label><input type='checkbox' name='drops' value='mkdir'>mkdir</label></div>
+		<div><label><input type='checkbox' name='drops' value='mkdirat'>mkdirat</label></div>
+		<div><label><input type='checkbox' name='drops' value='mknod'>mknod</label></div>
+		<div><label><input type='checkbox' name='drops' value='mknodat'>mknodat</label></div>
+		<div><label><input type='checkbox' name='drops' value='rmdir'>rmdir</label></div>
+    </div>
+  </details>
+  <button type="submit" >Run Container</button>
+</form>
+<div style="resize: both;overflow: auto;word-wrap: nowrap;">
+	<!-- <iframe width="1500"; height="400" src="https://localhost:4200" ></iframe> -->
+</div>
+</body>
+</html>
